@@ -5,19 +5,23 @@ import Edit from "./components/pages/Edit/Edit";
 import Add from "./components/pages/Add/Add";
 import WrongAddress from "./components/pages/WrongAddress/WrongAddress";
 import { Route, Routes } from "react-router-dom";
+import Header from "./components/views/Header/Header";
+import Footer from "./components/views/Footer/Footer";
 
 
 function App() {
   return (
     <div>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/post/*" element={<Post />} />
-        <Route path="/post/add" element={Add} />
+        <Route path="/post/add" element={<Add />} />
         <Route path="/post/edit/*" element={<Edit />} />
         <Route path="/*" element={<WrongAddress />} />
-      </Routes>
+      </Routes> 
+      <Footer />
     </div>
   );
 }
