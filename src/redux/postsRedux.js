@@ -1,4 +1,10 @@
+
+
+export const getAllPosts = (state) => state.posts;
+
 const createActionName = actionName => `app/posts/${actionName}`;
+
+
 
 // action creators
 const postsReducer = (statePart = [], action) => {

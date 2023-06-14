@@ -7,22 +7,24 @@ import WrongAddress from "./components/pages/WrongAddress/WrongAddress";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/views/Header/Header";
 import Footer from "./components/views/Footer/Footer";
+import { Container } from "react-bootstrap";
 
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/post/*" element={<Post />} />
-        <Route path="/post/add" element={<Add />} />
-        <Route path="/post/edit/*" element={<Edit />} />
-        <Route path="/*" element={<WrongAddress />} />
-      </Routes> 
-      <Footer />
-    </div>
+      <Container>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/post/*" element={<Post />} />
+          <Route path="/post/add" element={<Add />} />
+          <Route path="/post/edit/*" element={<Edit />} />
+          <Route path="/*" element={<WrongAddress />} />
+        </Routes> 
+        <Footer />
+      </Container>
+   
   );
 }
 
