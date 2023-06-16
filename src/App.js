@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./components/views/Header/Header";
 import Footer from "./components/views/Footer/Footer";
 import { Container } from "react-bootstrap";
-import SinglePostPage from "./components/pages/Post/SinglePostPage";
+import SinglePostPage from "./components/pages/SinglePostPage/SinglePostPage";
 
 
 function App() {
