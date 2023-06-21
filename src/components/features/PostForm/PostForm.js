@@ -13,7 +13,6 @@ const PostForm = props => {
 
 const categories = useSelector(state => getAllCategories(state))
 
-const { register, handleSubmit: validate, formState: { errors } } = useForm();
 	
 const [title, setTitle] = useState(props.title || '')
 const [author, setAuthor] = useState(props.author || '')
@@ -24,17 +23,20 @@ const [choseCategory, setChoseCategory] = useState(props.category || '')
 
 const [contentError, setContentError] = useState(false)
 const [dateError, setDateError] = useState(false)
-const handleSubmit = () => {
+const setError = () => {
 	setContentError(!content)
 	setDateError(!publishedDate)
+}
+
+const { register, handleSubmit: validate, formState: { errors } } = useForm();
+
+const handleSubmit = () => {
 	if(content && publishedDate)
 		props.action({ title, author, publishedDate, choseCategory, shortDescription, content });
-	
-	
 };
 
 return (
-	<Form onSubmit={validate(handleSubmit)}>
+	<Form onSubmit={(e) => {e.preventDefault();validate(handleSubmit)(e);setError()}}>
 		<Form.Group className="mb-3" controlId="formBasicEmail">
 			<Form.Label>Title</Form.Label>
 			<Form.Control 
