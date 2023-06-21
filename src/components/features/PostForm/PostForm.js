@@ -1,12 +1,18 @@
 import { useState } from "react"
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, FormLabel } from "react-bootstrap"
 import ReactQuill from "react-quill"
 import 'react-quill/dist/quill.snow.css';
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { getAllCategories } from "../../../redux/categoriesRedux";
+import CategoryOption from "../../common/CategoryOption/CategoryOption";
+
 
 const PostForm = props => {
+
+const categories = useSelector(state => getAllCategories(state))
 
 const { register, handleSubmit: validate, formState: { errors } } = useForm();
 	
@@ -15,16 +21,18 @@ const [author, setAuthor] = useState(props.author || '')
 const [publishedDate, setPublishedDate] = useState(props.publishedDate || '')
 const [shortDescription, setShortDescription] = useState(props.shortDescription || '')
 const [content, setContent] = useState(props.content || '')
+const [choseCategory, setChoseCategory] = useState()
 
 const [contentError, setContentError] = useState(false)
 const [dateError, setDateError] = useState(false)
-
 const handleSubmit = () => {
 	setContentError(!content)
 	setDateError(!publishedDate)
 	if(content && publishedDate)
-	console.log(content)
-	props.action({ title, author, publishedDate, shortDescription, content });
+	{
+		props.action({ title, author, publishedDate, choseCategory, shortDescription, content });
+	}
+	
 };
 
 return (
@@ -54,6 +62,17 @@ return (
 					selected={publishedDate} 
 					onChange={date => setPublishedDate(date)}/>
 					{dateError && <small className="d-block form-text text-danger mt-2">Set date!</small>}
+				</Form.Group>
+				<Form.Group className="mb-3">
+					<FormLabel>Category</FormLabel>
+					<Form.Select
+					{...register("category", {required: true})}  
+					value={choseCategory} 
+					onChange={e => setChoseCategory(e.target.value)}>
+						<option value=''>Select category...</option>
+						{categories.map(category =><CategoryOption key={category.id} {...category}/> )}
+					</Form.Select>
+					{errors.category && <span className="d-block form-text text-danger mt-2">Choose category</span>}
 				</Form.Group>
 				<Form.Group className="mb-3">
 					<Form.Label>Short Description</Form.Label>
