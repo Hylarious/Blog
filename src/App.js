@@ -2,6 +2,8 @@ import Home from "./components/pages/Home/Home";
 import About from "./components/pages/About/About";
 import Edit from "./components/pages/Edit/Edit";
 import Add from "./components/pages/Add/Add";
+import Categories from "./components/pages/Categories/Categories";
+import Category from "./components/views/Category/Category";
 import WrongAddress from "./components/pages/WrongAddress/WrongAddress";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/views/Header/Header";
@@ -20,6 +22,8 @@ function App() {
           <Route path="/post/:id" element={<SinglePostPage />} />
           <Route path="/post/add" element={<Add />} />
           <Route path="/post/edit/:id" element={<Edit />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="category/:category" element={<Category />}/>
           <Route path="/*" element={<WrongAddress />} />
         </Routes> 
         <Footer />

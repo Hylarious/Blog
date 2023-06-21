@@ -34,6 +34,7 @@ const SinglePostPage = () => {
 					<div>
 						<h6><span className="fw-bold">Author:</span> {postData.author}</h6>
 						<h6><span className="fw-bold">Date:</span> {postData.publishedDate.toLocaleDateString("en-GB")}</h6>
+						<h6><span className="fw-bold">Category:</span> {postData.category}</h6>
 						<p dangerouslySetInnerHTML={{ __html: postData.content }} />
 					</div>
 				</Col>
